@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 
-
 function restrict() {
 	return async (req, res, next) => {
 		try {
@@ -21,12 +20,6 @@ function restrict() {
 						message: "invalid credentials"
 					})
 				}
-
-				// if(role && roles.indexOf(decoded.userRole) < roles.indexOf(role)) {
-				// 	return res.status(401).json({
-				// 		message: "invalid credentials"
-				// 	})
-				// }
 				
 				//make the tokens decoded payload avialable to other middleware functions or route handlers, in case we want to use it for something
 				req.token = decoded

@@ -17,10 +17,17 @@ function findBy(filter) {
         .first()
 }
 
+function findById(id) {
+	return db("users")
+		.select("id", "username")
+		.where({ id })
+		.first()
+}
 
 
 module.exports = {
     add,
     find,
     findBy,
+    findById,
 }

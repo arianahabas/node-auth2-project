@@ -61,7 +61,7 @@ router.post('/api/login', async (req, res, next) => {
         const token = jwt.sign({
             userId: user.id,
             userDept: user.department,
-        }, process.env.JWT_SECRET)
+        }, process.env.JWT_SECRET )
 
         res.cookie('token', token)
 
@@ -72,16 +72,16 @@ router.post('/api/login', async (req, res, next) => {
         next(err)
     }
 })
-//❌ Use the credentials sent inside the body to authenticate the user. On successful login, create a new JWT with the user id as the subject and send it back to the client. If login fails, respond with the correct status code and the message: 'You shall not pass!'
+//✅ Use the credentials sent inside the body to authenticate the user. On successful login, create a new JWT with the user id as the subject and send it back to the client. If login fails, respond with the correct status code and the message: 'You shall not pass!'
 
-router.get('/api/users', restrict(), async (req, res, next) => {
+router.get('/api/users', restrict('athletics'), async (req, res, next) => {
     try {
         res.json(await Users.find())
     } catch (err) {
         next(err)
     }
 })
-//❌ If the user is logged in, respond with an array of all the users contained in the database. If the user is not logged in respond with the correct status code and the message: 'You shall not pass!'.
+//✅ If the user is logged in, respond with an array of all the users contained in the database. If the user is not logged in respond with the correct status code and the message: 'You shall not pass!'.
 
 
 module.exports = router
